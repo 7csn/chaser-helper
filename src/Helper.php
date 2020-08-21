@@ -32,36 +32,37 @@ class Helper
     }
 
     /**
-     * 获取当前精确日期时间（微秒）
+     * 获取当前精确日期时间
      *
-     * @param int $decimals 小数位 1~6
+     * @param string $format
+     * @param int $precision 1~6
      * @return string
      */
-    public static function datetime(int $decimals = 6)
+    public static function datetime(string $format = 'H:i:s', int $precision = 6)
     {
-        return date('H:i:s') . substr(microtime(), 1, $decimals + 1);
+        return date($format) . substr(microtime(), 1, $precision + 1);
     }
 
     /**
-     * 获取当前精确时间（微秒）
+     * 获取当前精确时间
      *
-     * @param int $decimals 小数位 1~6
+     * @param int $precision 1~6
      * @return string
      */
-    public static function time(int $decimals = 6)
+    public static function time(int $precision = 6)
     {
-        [$float, $time] = explode(' ', microtime());
-        return $time . substr($float, 1, $decimals);
+        [$float, $int] = explode(' ', microtime());
+        return $int . substr($float, 1, $precision);
     }
 
     /**
-     * 计算时间差（微秒）
+     * 计算精确时间差
      *
      * @param string $start
      * @param string|null $end
      * @return float
      */
-    public static function takeTime(string $start, string $end = null)
+    public static function takeTime(string $start, ?string $end = null)
     {
         if ($end === null) {
             $end = microtime();
