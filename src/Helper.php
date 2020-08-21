@@ -38,7 +38,7 @@ class Helper
      * @param int $precision 1~6
      * @return string
      */
-    public static function datetime(string $format = 'H:i:s', int $precision = 6)
+    public static function datetime(string $format = 'Y-m-d H:i:s', int $precision = 6)
     {
         return date($format) . substr(microtime(), 1, $precision + 1);
     }
