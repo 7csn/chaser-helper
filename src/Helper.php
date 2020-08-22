@@ -14,11 +14,12 @@ class Helper
      *
      * @param array|mixed $data
      * @param callable $callable
+     * @param mixed ...$args
      * @return bool|mixed
      */
-    public static function callableForBatch($data, callable $callable)
+    public static function callableForBatch($data, callable $callable, ...$args)
     {
-        return is_array($data) ? array_walk($data, $callable) : call_user_func($callable, $data);
+        return is_array($data) ? array_walk($data, $callable, ...$args) : call_user_func($callable, $data, null, ...$args);
     }
 
     /**
