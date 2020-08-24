@@ -137,4 +137,14 @@ class Helper
         $mbLength = mb_strlen($text, $charset);
         return $mbLength > $length ? mb_substr($text, 0, max($length - 2, 0), $charset) . '...' : $text;
     }
+
+    /**
+     * 是否支持端口复用
+     *
+     * @return bool
+     */
+    public static function reusePort()
+    {
+        return PHP_OS === 'Linux' && version_compare(php_uname('r'), '3.9', '>=');
+    }
 }
